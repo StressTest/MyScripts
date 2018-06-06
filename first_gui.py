@@ -1,6 +1,7 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QRadioButton, QPushButton
+from PyQt5.QtWidgets import QApplication, QWidget, QRadioButton, QPushButton, QToolButton
 from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import QCoreApplication
 
 
 class Example(QWidget):
@@ -9,9 +10,14 @@ class Example(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        btn = QRadioButton("Name", self)
-        self.resize(250, 150)
-        self.setWindowTitle("ups")
+        btn = QPushButton("Start/Stop", self)
+        btn.resize(btn.sizeHint())
+        btn.move(150 - btn.size().width()//2, 25)
+        self.connect(btn.clicked())
+        # btn.clicked.connect(QCoreApplication.instance().quit)
+        # btn.pressed()
+        self.resize(300, 150)
+        self.setWindowTitle("First Gui App")
 
         self.show()
 
@@ -25,4 +31,6 @@ if __name__ == "__main__":
     # w.setWindowTitle('Simple')
     # w.show()
     wd = Example()
+    # print(wd.close())
+
     sys.exit(app.exec())
