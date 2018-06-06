@@ -13,7 +13,6 @@ class Example(QWidget):
         btn = QPushButton("Start/Stop", self)
         btn.resize(btn.sizeHint())
         btn.move(150 - btn.size().width()//2, 25)
-        self.connect(btn.clicked())
         # btn.clicked.connect(QCoreApplication.instance().quit)
         # btn.pressed()
         self.resize(300, 150)
