@@ -81,4 +81,3 @@ if __name__ == "__main__":
     # print(wd.close())
 
     sys.exit(app.exec())
-    
