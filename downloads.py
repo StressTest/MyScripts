@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 adr = """
-https://webinar.nocvko.ru/presentation/28323a7a5f479d4f0614371f1b4fa7f0e735223e-1553005687109/presentation/257eb91455640a286a9d4e535d04a4c33f5bf448-1553007312012/
+
 """
 
 text = '''
