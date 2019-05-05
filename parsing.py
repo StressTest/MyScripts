@@ -51,7 +51,7 @@ video_link = soup.find(id='video').find('source', type='video/webm; codecs="vp8.
 print(parent_link + video_link)
 for slide in slides:
     print(parent_link + slide.link)
-
+print(os.system(r'cd ffmpeg/bin && ffmpeg.exe'))
 
 
 # text = BeautifulSoup(html)
