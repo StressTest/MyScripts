@@ -52,6 +52,29 @@ class Example(QWidget):
 
 if __name__ == '__main__':
 
-    app = QApplication(sys.argv)
-    ex = Example()
-    sys.exit(app.exec_())
+    # app = QApplication(sys.argv)
+    # ex = Example()
+    # sys.exit(app.exec_())
+
+    def str_to_float(text):
+        """Функция переводящяя строку в число
+
+str -> float
+        """
+        result = 0
+        try:
+            if not isinstance(text, str):
+                raise TypeError
+            result = float(text)
+        except ValueError:
+            print('Невозможно перевести в число. Будет возвращено 0')
+        except TypeError:
+            print('Невозможно перевести в число. Будет возвращено 1')
+            result = 1
+        finally:
+            return result
+
+    # x = str_to_float(input('введите число '))
+    # print(x)
+    # print(str_to_float(True))
+    # print(str_to_float.__doc__)
