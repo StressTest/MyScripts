@@ -7,7 +7,7 @@ from moviepy.editor import *
 text = '''
 
 '''
-url_video = r'https://webinar.nocvko.ru/' +'
+url_video = r'https://webinar.nocvko.ru/' +''
 
 
 
@@ -88,3 +88,10 @@ audio_clip = AudioFileClip("temp.webm")
 videoclip = VideoFileClip('temp_video.avi').subclip(0, audio_clip.duration)
 #     # audio_clip = AudioFileClip("temp_audio.ogg")
 videoclip.set_audio(audio_clip).write_videofile("7 Проектирование нового продукта.avi", codec='mpeg4')
+
+
+#
+# import bigbluebutton
+# import requests
+# import pandas
+

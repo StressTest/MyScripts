@@ -56,25 +56,48 @@ if __name__ == '__main__':
     # ex = Example()
     # sys.exit(app.exec_())
 
-    def str_to_float(text):
-        """Функция переводящяя строку в число
+#     def str_to_float(text):
+#         """Функция переводящяя строку в число
+#
+# str -> float
+#         """
+#         result = 0
+#         try:
+#             if not isinstance(text, str):
+#                 raise TypeError
+#             result = float(text)
+#         except ValueError:
+#             print('Невозможно перевести в число. Будет возвращено 0')
+#         except TypeError:
+#             print('Невозможно перевести в число. Будет возвращено 1')
+#             result = 1
+#         finally:
+#             return result
 
-str -> float
-        """
-        result = 0
-        try:
-            if not isinstance(text, str):
-                raise TypeError
-            result = float(text)
-        except ValueError:
-            print('Невозможно перевести в число. Будет возвращено 0')
-        except TypeError:
-            print('Невозможно перевести в число. Будет возвращено 1')
-            result = 1
-        finally:
-            return result
+    class Square:
+        squares = []
 
-    # x = str_to_float(input('введите число '))
-    # print(x)
-    # print(str_to_float(True))
-    # print(str_to_float.__doc__)
+        def __init__(self, w, h):
+            self.width = w
+            self.height = h
+            self.squares.append((w, h))
+
+
+        def __repr__(self):
+            return "width = {}, height = {}".format(self.width, self.height)
+
+        def print_squares(self):
+            print(self.squares)
+
+
+    x = Square(3,4)
+    y = Square(7, 8)
+    # z = Square(5)
+    print(type(x), type(y))
+    if type(x) is type(y):
+        print(True)
+    else:
+        print(False)
+    print(x)
+    print(x.squares)
+    y.print_squares()

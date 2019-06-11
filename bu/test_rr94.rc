@@ -1,0 +1,57 @@
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\test_rr94.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_TEST_RR94_DIALOG DIALOGEX 0, 0, 410, 127
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "ОТЛАДЧИК БЛОКА УПРАВЛЕНИЯ"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "ВКЛ",IDC_BUTTON1,14,18,74,16
+    GROUPBOX        "БУ",IDC_STATIC,7,7,192,35
+    PUSHBUTTON      "ВЫКЛ",IDC_BUTTOFF1,98,18,74,16
+    PUSHBUTTON      "Задание ИМ1",IDC_BUTTON2,224,20,74,16
+    PUSHBUTTON      "Задание ИМ2",IDC_BUTTOFF2,224,44,74,16
+    PUSHBUTTON      "Задание ИМ3",IDC_BUTTON3,224,68,74,16
+    PUSHBUTTON      "Задание ИМ4",IDC_BUTTOFF3,224,92,74,16
+    PUSHBUTTON      "Задание ИМ5, ИМ7",IDC_BUTTON4,314,20,74,16
+    PUSHBUTTON      "Задание ИМ6, ИМ8",IDC_BUTTOFF4,314,44,74,16
+    PUSHBUTTON      "Задание ИМ9",IDC_BUTTON5,314,68,74,16
+    GROUPBOX        "Задание ИМ'ов",IDC_STATIC,210,7,193,113
+    PUSHBUTTON      "Задание ИМ10",IDC_BUTTOFF5,314,92,74,16
+    LTEXT           "---",IDC_STATIC_ANSW,22,64,164,8
+    GROUPBOX        "Готовность БУ",IDC_STATIC,7,48,192,36
+    PUSHBUTTON      "Сброс всех контроллеров",IDC_BUTTON16,7,92,191,28
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_TEST_RR94_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 403
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 120
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
