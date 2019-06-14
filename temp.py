@@ -56,14 +56,37 @@ if __name__ == '__main__':
     class MainWindow(QtWidgets.QWidget):
         def __init__(self):
             super().__init__()
-            self.init_window()
+            self.init_UI()
 
-        def init_window(self):
-            self.setGeometry(300,300,600, 600)
+        def init_UI(self):
+            self.setGeometry(300, 300, 600, 600)
             self.setWindowIcon(QtGui.QIcon('icons.png'))
             self.setWindowTitle('My Terminal')
-            btn = QtWidgets.QPushButton(QtGui.QIcon('icons.png'),'Hello', self)
-            btn.clicked.connect(QtCore.QCoreApplication.instance().quit)
+            connect_btn = QtWidgets.QPushButton(QtGui.QIcon('icons.png'),'Connect', self)
+            connect_btn.setGeometry(20, 20, 90, 40)
+
+            reconnect_btn = QtWidgets.QPushButton('Reconnect', self)
+            reconnect_btn.setGeometry(20, 80, 90, 40)
+
+            close_btn = QtWidgets.QPushButton('Close', self)
+            close_btn.setGeometry(20, 140, 90, 40)
+
+            update_btn = QtWidgets.QPushButton('Update', self)
+            update_btn.setGeometry(140, 80, 90, 40)
+
+            ports_box = QtWidgets.QComboBox(self)
+            ports_box.setGeometry(140, 20, 90, 40)
+            ports_box.addItem("COM1")
+            ports_box.addItem("COM2")
+            ports_box.addItem("COM3")
+            ports_box.addItem("COM4")
+            speed_box = QtWidgets.QComboBox(self)
+            speed_box.setGeometry(140, 140, 90, 40)
+            speed_box.addItem("9600")
+            speed_box.addItem("115200")
+            speed_box.addItem("COM3")
+            speed_box.addItem("COM4")
+            # connect_btn.clicked.connect(QtCore.QCoreApplication.instance().quit)
             self.show()
 
     app = QtWidgets.QApplication()
