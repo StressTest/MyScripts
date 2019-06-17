@@ -50,48 +50,103 @@
 #             self.btn.setText('Stop')
 
 from PySide2 import QtWidgets, QtGui, QtCore
+# from PyQt5 import QtWidgets, QtGui, QtCore
+import serial.tools.list_ports as list_ports
+import serial
 import sys
 
+
+def ports_listO():
+    print('pushed external')
+
+class MainWindow(QtWidgets.QWidget):
+
+    def __init__(self):
+        super().__init__()
+        self.init_UI()
+
+    def init_UI(self):
+        self.setGeometry(300, 300, 600, 600)
+        self.setWindowIcon(QtGui.QIcon('icons.png'))
+        self.setWindowTitle('My Terminal')
+        self.connect_btn = QtWidgets.QPushButton(QtGui.QIcon('icons.png'), 'Connect', self)
+        self.connect_btn.setGeometry(20, 20, 90, 40)
+
+        self.disconnect_btn = QtWidgets.QPushButton('Disconnect', self)
+        self.disconnect_btn.setGeometry(20, 80, 90, 40)
+
+        self.close_btn = QtWidgets.QPushButton('Close', self)
+        self.close_btn.setGeometry(20, 140, 90, 40)
+
+        self.update_btn = QtWidgets.QPushButton('Update', self)
+        self.update_btn.setGeometry(140, 80, 90, 40)
+
+
+        self.ports_box = QtWidgets.QComboBox(self)
+        self.ports_box.setGeometry(140, 20, 90, 40)
+        self.update_ports_list()
+
+        self.speed_box = QtWidgets.QComboBox(self)
+        self.speed_box.setGeometry(140, 140, 90, 40)
+        self.speed_box.addItem('300')
+        self.speed_box.addItem('600')
+        self.speed_box.addItem('1200')
+        self.speed_box.addItem('2400')
+        self.speed_box.addItem('4800')
+        self.speed_box.addItem('9600')
+        self.speed_box.addItem('19200')
+        self.speed_box.addItem('38400')
+        self.speed_box.addItem('57600')
+        self.speed_box.addItem("115200")
+
+
+        self.connection = serial.Serial()
+        print(self.connection.is_open)
+        self.close_btn.clicked.connect(QtWidgets.QApplication.instance().quit)
+        self.update_btn.clicked.connect(self.update_ports_list)
+
+        self.connect_btn.clicked.connect(self.uart_connect)
+        self.disconnect_btn.clicked.connect(self.uart_disconnect)
+        # self.connect_btn.clicked.connect()
+        # self.update_btn.clicked.connect(print('xxx'))
+        self.show()
+
+    def update_ports_list(self):
+        for i in range(self.ports_box.count(), -1, -1):
+            self.ports_box.removeItem(i)
+        ports = [port.device for port in list_ports.comports()]
+        ports.sort()
+        for port in ports:
+            self.ports_box.addItem(port)
+
+
+    def uart_connect(self):
+        # port = self.ports_box.currentText()
+        # baudrate = self.speed_box.currentText()
+        # self.connection = serial.Serial(port=port, baudrate=baudrate)
+        # self.connection.write(b'hello')
+        port = self.ports_box.currentText()
+        baudrate = self.speed_box.currentText()
+        self.connection = serial.Serial(port=port, baudrate=baudrate)
+        self.connection.write(b'hello')
+        # self.connection.close()
+        # print(self.connection.is_open)
+
+    def uart_disconnect(self):
+        # port = self.ports_box.currentText()
+        # baudrate = self.speed_box.currentText()
+        print(self.connection.is_open)
+        self.connection.close()
+        print(self.connection.is_open)
+
 if __name__ == '__main__':
-    class MainWindow(QtWidgets.QWidget):
-        def __init__(self):
-            super().__init__()
-            self.init_UI()
 
-        def init_UI(self):
-            self.setGeometry(300, 300, 600, 600)
-            self.setWindowIcon(QtGui.QIcon('icons.png'))
-            self.setWindowTitle('My Terminal')
-            connect_btn = QtWidgets.QPushButton(QtGui.QIcon('icons.png'),'Connect', self)
-            connect_btn.setGeometry(20, 20, 90, 40)
-
-            reconnect_btn = QtWidgets.QPushButton('Reconnect', self)
-            reconnect_btn.setGeometry(20, 80, 90, 40)
-
-            close_btn = QtWidgets.QPushButton('Close', self)
-            close_btn.setGeometry(20, 140, 90, 40)
-
-            update_btn = QtWidgets.QPushButton('Update', self)
-            update_btn.setGeometry(140, 80, 90, 40)
-
-            ports_box = QtWidgets.QComboBox(self)
-            ports_box.setGeometry(140, 20, 90, 40)
-            ports_box.addItem("COM1")
-            ports_box.addItem("COM2")
-            ports_box.addItem("COM3")
-            ports_box.addItem("COM4")
-            speed_box = QtWidgets.QComboBox(self)
-            speed_box.setGeometry(140, 140, 90, 40)
-            speed_box.addItem("9600")
-            speed_box.addItem("115200")
-            speed_box.addItem("COM3")
-            speed_box.addItem("COM4")
-            # connect_btn.clicked.connect(QtCore.QCoreApplication.instance().quit)
-            self.show()
-
-    app = QtWidgets.QApplication()
+    app = QtWidgets.QApplication(sys.argv)
     window = MainWindow()
-    sys.exit(app.exec_())
+    app.exec_()
+    sys.exit()
+
+    # sys.exit(app.exec_())
     # w = QtWidgets.QWidget()
     # print(w)
     # w.setWindowTitle('Hi, everyone!')
